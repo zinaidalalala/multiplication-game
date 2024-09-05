@@ -22,8 +22,14 @@
 }
 
 body {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   margin: 0;
   height: 100vh;
@@ -36,9 +42,18 @@ body {
 }
 
 .game {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   width: 100%;
   height: 70vh;
@@ -52,21 +67,38 @@ body {
 .game__container {
   width: 100%;
   color: var(--container-text-color);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   gap: 10px;
 }
 
 .exercise {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   width: 100%;
 }
 
 .exercise__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   width: calc(50% - 5px);
 }
@@ -100,6 +132,8 @@ body {
   color: white;
   cursor: pointer;
   background-color: var(--button-bg-color);
+  -webkit-transition: background-color 0.3s ease-in-out;
+  -o-transition: background-color 0.3s ease-in-out;
   transition: background-color 0.3s ease-in-out;
 }
 
@@ -120,8 +154,13 @@ body {
 }
 
 .cubs {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: calc(50% - 5px);
   gap: 8px;
@@ -133,23 +172,44 @@ body {
   height: 20px;
 }
 
-/* --- Анимация подъема кубиков --- */
-@keyframes moveUp {
+@-webkit-keyframes moveUp {
   from {
-    transform: translateY(100px); /* Стартовая позиция кубиков */
+    -webkit-transform: translateY(100px);
+    transform: translateY(100px);
     opacity: 0;
   }
   to {
-    transform: translateY(0); /* Конечная позиция кубиков */
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes moveUp {
+  from {
+    -webkit-transform: translateY(100px);
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
     opacity: 1;
   }
 }
 
 .cub.animate {
-  animation: moveUp 0.5s ease-in-out forwards; /* Анимация на 500 мс */
+  -webkit-animation: moveUp 0.5s ease-in-out forwards;
+  animation: moveUp 0.5s ease-in-out forwards;
 }
 
-/* --- Анимация плавного появления нового вопроса --- */
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -160,16 +220,24 @@ body {
 }
 
 .exercise.fade-in {
-  opacity: 0; /* Начальное состояние */
-  animation: fadeIn 0.5s forwards; /* Анимация появления за 500ms */
+  opacity: 0;
+  -webkit-animation: fadeIn 0.5s forwards;
+  animation: fadeIn 0.5s forwards;
 }
 
-/*  */
-
 .end {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   height: 100vh;
   color: #333;
@@ -193,12 +261,11 @@ body {
   display: none;
 }
 
-/*  */
-
 .shadow {
   text-align: center;
   background-color: white;
   border-radius: 10px;
+  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -207,6 +274,7 @@ select {
   font-size: 1.2rem;
   border: 1px solid #ccc;
   border-radius: 5px;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }

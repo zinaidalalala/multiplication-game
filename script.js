@@ -2,13 +2,13 @@ const game = document.querySelector('.game');
 const container = game.querySelector('.container');
 const button = game.querySelector('.button');
 const select = document.querySelector('select');
-let N = parseInt(select.value);
-let currentMultiplier = 1;
-const totalRows = 9;
-let currentInput = null;
 const end = document.querySelector('.end');
 const endTitle = document.querySelector('.end__title');
+const totalRows = 9;
 
+let N = parseInt(select.value);
+let currentMultiplier = 1;
+let currentInput = null;
 
 function createNewQuestion() {
   N = select.value;
@@ -28,7 +28,6 @@ function createNewQuestion() {
   input.type = 'text';
   input.setAttribute('data-answer', N * currentMultiplier);
   input.autofocus = true;
-
 
   const cubs = document.createElement('div');
   cubs.classList.add('cubs');
@@ -55,13 +54,6 @@ function createNewQuestion() {
   currentInput.classList.remove('wrong');
 }
 
-container.addEventListener('keydown', function (event) {
-  if (event.key === 'Enter' && !button.disabled) {
-    button.click();
-  }
-});
-
-
 function handleInput(inputElement) {
   const userInput = inputElement.value.trim();
   const correctAnswer = parseInt(inputElement.getAttribute('data-answer'));
@@ -76,6 +68,26 @@ function handleInput(inputElement) {
     button.classList.remove('right');
   }
 }
+
+function restartGame() {
+  currentMultiplier = 1;
+  button.textContent = 'Play first';
+  endTitle.textContent = 'Good job! You are very smart :)';
+  container.innerHTML = '';
+  end.classList.remove('hidden');
+}
+
+function toggleButtonState(isCorrect) {
+  button.classList.toggle('right', isCorrect);
+  button.classList.toggle('wrong', !isCorrect);
+  button.disabled = !isCorrect;
+}
+
+container.addEventListener('keydown', function (event) {
+  if (event.key === 'Enter' && !button.disabled) {
+    button.click();
+  }
+});
 
 container.addEventListener('input', function (event) {
   if (event.target.classList.contains('input')) {
@@ -94,12 +106,13 @@ button.addEventListener('click', function () {
   if (button.textContent === 'Start') {
     createNewQuestion();
     return;
-  } else
-    if (button.textContent === 'Play first') {
-      restartGame();
-      createNewQuestion();
-      return;
-    }
+  }
+
+  if (button.textContent === 'Play first') {
+    restartGame();
+    createNewQuestion();
+    return;
+  }
 
   if (userAnswer === correctAnswer) {
     toggleButtonState(true);
@@ -121,19 +134,5 @@ button.addEventListener('click', function () {
     }, 1000);
   }
 });
-
-function restartGame() {
-  currentMultiplier = 1;
-  button.textContent = 'Play first';
-  endTitle.textContent = 'Good job! You are very smart :)';
-  container.innerHTML = '';
-  end.classList.remove('hidden');
-}
-
-function toggleButtonState(isCorrect) {
-  button.classList.toggle('right', isCorrect);
-  button.classList.toggle('wrong', !isCorrect);
-  button.disabled = !isCorrect;
-}
 
 button.focus();
